@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container-fluid">
+        <section class="container p-5">
+            <form class="form" #f="ngForm" (ngSubmit)="save()">
+          
+                    <div>
+                       
+                        <label>FirstName :</label>
+                        <input type="text" name="fnm1"[(ngModel)]="appointment.firstName" class="form-control"
+                         required="required" minlength="4"  #fnm="ngModel"/>
+                        <ol *ngIf="(fnm.touched||fnm.dirty)&&fnm.invalid">
+                            <li *ngIf="fnm.errors.required">Can not be left blank</li>
+                            <li *ngIf="fnm.errors.minlength">Can not be less than 4 characters</li>
+                        </ol>
+                        <label>LastName :</label>
+                        <input type="text" name="lnm1"[(ngModel)]="appointment.lastName" class="form-control"
+                                   required="required" minlength="4" #lnm="ngModel"/>
+                        <ol *ngIf="(lnm.touched||lnm.dirty)&&lnm.invalid">
+                            <li *ngIf="lnm.errors.required">Can not be left blank</li>
+                            <li *ngIf="lnm.errors.minlength">Can not be less than 4 characters</li>
+                        </ol>
+                    </div>
+                    <div>
+                        <label>Age :</label>
+                        <input type="number" name="age1"[(ngModel)]="appointment.age" class="form-control"
+                              required="required" min="18" #age="ngModel"/>
+                        <ol *ngIf="(age.touched||age.dirty)&&age.invalid">
+                            <li *ngIf="age.errors.required">Can not be left blank</li>
+                            <li *ngIf="age.errors.min">Can not be less than 18</li>
+                        </ol>
+                        <label>Email :</label>
+                        <input type="text" name="email1"[(ngModel)]="appointment.email" class="form-control"
+                           required="required" min="" #email="ngModel"/>
+                        <ol *ngIf="(email.touched||email.dirty)&&email.invalid">
+                            <li *ngIf="email.errors.required">Can not be left blank</li>
+                            <li *ngIf="email.errors.min">It must contain @ symbol</li>
+                        </ol>
+                        <label>Phone No :</label>
+                        <input type="number" name="phno1"[(ngModel)]="appointment.phno" class="form-control"
+                        required="required" min="10" #phno="ngModel"/>
+                  <ol *ngIf="(phno.touched||phno.dirty)&&phno.invalid">
+                      <li *ngIf="phno.errors.required">Can not be left blank</li>
+                      <li *ngIf="phno.errors.min">Can not be less than 10</li>
+                  </ol>
+                       
+                    </div>
+                    <div>
+                        <fieldset>
+                            <legend>Address</legend>
+                            <input type="text" name="add"[(ngModel)]="appointment.add" class="form-control"
+                            required="required" #add="ngModel"/>
+                      <ol *ngIf="(add.touched||add.dirty)&&add.invalid">
+                          <li *ngIf="add.errors.required">Can not be left blank</li>
+                         
+                      </ol>
+                            <label>StreetName :</label>
+                            <input type="text" pattern="[A-Za-z]{4,10}" id="street" /><br />
+                            <label>City :</label>
+                            <input type="text" name="city"[(ngModel)]="appointment.city" class="form-control"
+                            required="required"  #city="ngModel"/>
+                      <ol *ngIf="(city.touched||city.dirty)&&city.invalid">
+                          <li *ngIf="city.errors.required">Can not be left blank</li>
+                          
+                      </ol>
+                            <label>State :</label>
+                            <input type="text" pattern="[A-Za-z]{4,10}" id="state" />
+                            <label>Country :</label>
+                            <select id="country" name="country" placeholder="Select">
+                                <option name=""></option>
+                                <option value="Afghanistan">Afghanistan</option>
+                                <option value="Åmerica">America</option>
+                                <option value="Australia">Australia</option>
+                                <option value="Albania">Albania</option>
+                                <option value="Algeria">Algeria</option>
+                                <option value="Anguilla">Anguilla</option>
+                                <option value="Antarctica">Antarctica</option>
+                                <option value="Bhutan">Bhutan</option>
+                                <option value="China">China</option>
+                                <option value="India">India</option>
+                                <option value="Japan">Japan</option>
+                                <option value="Srilanka">Srilanka</option>
+                            </select><br />
+                            <label>Pincode</label>
+                            <input type="text" pattern="[1-9]{1,6}" id="pin" />
+                        </fieldset>
+                    </div>
+            
+                     
+              
+        <table>
+              <tr><form>
+                <td><span>Trainer Preference :</span></td>
+                <td><label for="chkmale">
+                    <input type="radio" name="gender" id="chkmale" >
+                    Male Trainer<br/></label>
+                   
+                    <label for="chkfemale">
+                    <input type="radio" name="gender" id="chkfemale" >
+                    Female Trainer<br/></label>
+                    <label for="chkothers">
+                        <input type="radio" name="gender" id="chkothers" required>
+                         No Preference<br/></label>
+            
+                    <div id="trainername1" style="display: none" required>
+                        Trainer Name
+                        <input type="text" id="trainername1" required>
+                        others
+                        <input type="text" id="others" required>
+                        </div>
+                     
+                     <div id="trainername" style="display: none">
+                     Trainer Name
+                     <input type="text" id="trainername" required>
+                     others
+                     <input type="text" id="others" required>
+                     </div>
+                </td></form>
+            </tr> 
+            </table>
+                    <div>
+                        <label>Do you need a Physiotherapist ?</label><br />
+                        <input type="radio" name="reason" value="Yes" id="hi">Yes
+                        <input type="radio" name="reason" value="No" id="hi">No
+                    </div>
+                    <div>
+            
+                    </div>
+            
+                    <!-- <div>
+                        <label>Appointment :</label>
+                        <table class="tableborder table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Day</th>
+                                    <th>7 to 9 AM</th>
+                                    <th>9 to 11 AM</th>
+                                    <th>11 AM to 1 PM</th>
+                                    <th>1 to 3 PM</th>
+                                    <th>3 to 5 PM</th>
+                                </tr>
+                            </thead>
+                            <tbody id="one">
+                                <tr>
+                                    <td>Monday</td>
+                                    <td><input type="radio" name="book" value="1">1</td>
+                                    <td><input type="radio" name="book" value="2">2</td>
+                                    <td><input type="radio" name="book" value="3">3</td>
+                                    <td><input type="radio" name="book" value="4">4</td>
+                                    <td><input type="radio" name="book" value="5">5</td>
+                                </tr>
+                                <tr>
+                                    <td>Tuesday</td>
+                                    <td><input type="radio" name="book" value="1">1</td>
+                                    <td><input type="radio" name="book" value="2">2</td>
+                                    <td><input type="radio" name="book" value="3">3</td>
+                                    <td><input type="radio" name="book" value="4">4</td>
+                                    <td><input type="radio" name="book" value="5">5</td>
+                                </tr>
+                                <tr>
+                                    <td>Wednesday</td>
+                                    <td><input type="radio" name="book" value="1">1</td>
+                                    <td><input type="radio" name="book" value="2">2</td>
+                                    <td><input type="radio" name="book" value="3">3</td>
+                                    <td><input type="radio" name="book" value="4">4</td>
+                                    <td><input type="radio" name="book" value="5">5</td>
+                                </tr>
+                                <tr>
+                                    <td>Thursday</td>
+                                    <td><input type="radio" name="book" value="1">1</td>
+                                    <td><input type="radio" name="book" value="2">2</td>
+                                    <td><input type="radio" name="book" value="3">3</td>
+                                    <td><input type="radio" name="book" value="4">4</td>
+                                    <td><input type="radio" name="book" value="5">5</td>
+                                </tr>
+                                <tr>
+                                    <td>Friday</td>
+                                    <td><input type="radio" name="book" value="1">1</td>
+                                    <td><input type="radio" name="book" value="2">2</td>
+                                    <td><input type="radio" name="book" value="3">3</td>
+                                    <td><input type="radio" name="book" value="4">4</td>
+                                    <td><input type="radio" name="book" value="5">5</td>
+                                </tr>
+                                <tr>
+                                    <td>Saturday</td>
+                                    <td><input type="radio" name="book" value="1">1</td>
+                                    <td><input type="radio" name="book" value="2">2</td>
+                                    <td><input type="radio" name="book" value="3">3</td>
+                                    <td><input type="radio" name="book" value="4">4</td>
+                                    <td><input type="radio" name="book" value="5">5</td>
+                                </tr>
+                                <tr>
+                                    <td>Sunday</td>
+                                    <td><input type="radio" name="book" value="1">1</td>
+                                    <td><input type="radio" name="book" value="2">2</td>
+                                    <td><input type="radio" name="book" value="3">3</td>
+                                    <td><input type="radio" name="book" value="4">4</td>
+                                    <td><input type="radio" name="book" value="5">5</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+             -->
+        
+             <tr><td>Appointment :</td></tr>
+                <table border="1" align="center" cellspacing="2" cellpadding="4">
+                    <tr>
+                        <td><strong>Day</strong></td>
+                        <td><strong>7-9a.m</strong></td>
+                        <td><strong>9-11am</strong></td>
+                        <td><strong>11-1pm</strong></td>
+                        <td><strong>1-3pm</strong></td>
+                        <td><strong>3-5pm</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Monday</td>
+                        <td><input type="radio" name="one" value="1" required>1</td>
+                        <td><input type="radio" name="one" value="2" required>2</td>
+                        <td><input type="radio" name="one" value="3" required>3</td>
+                        <td><input type="radio" name="one" value="4" required>4</td>
+                        <td><input type="radio" name="one" value="5" required>5</td>
+                    </tr>
+                    <tr>
+                        <td>Tuesday</td>
+                        <td><input type="radio" name="sev" value="1" required>1</td>
+                        <td><input type="radio" name="sev" value="2" required>2</td>
+                        <td><input type="radio" name="sev" value="3" required>3</td>
+                        <td><input type="radio" name="sev" value="4" required>4</td>
+                        <td><input type="radio" name="sev" value="5" required>5</td>
+                    </tr>
+                    <tr>
+                        <td>Wednesday</td>
+                        <td><input type="radio" name="six" value="1" required>1</td>
+                        <td><input type="radio" name="six" value="2" required>2</td>
+                        <td><input type="radio" name="six" value="3" required>3</td>
+                        <td><input type="radio" name="six" value="4" required>4</td>
+                        <td><input type="radio" name="six" value="5" required>5</td>
+                    </tr>
+                    <tr>
+                        <td>Thursday</td>
+                        <td><input type="radio" name="five" value="1" required>1</td>
+                        <td><input type="radio" name="five" value="2" required>2</td>
+                        <td><input type="radio" name="five" value="3" required>3</td>
+                        <td><input type="radio" name="five" value="4" required>4</td>
+                        <td><input type="radio" name="five" value="5" required>5</td>
+                    </tr>
+                    <tr>
+                        <td>Friday</td>
+                        
+                        <td><input type="radio" name="four" value="1" required>1</td>
+                        <td><input type="radio" name="four" value="2" required>2</td>
+                        <td><input type="radio" name="four" value="3" required>3</td>
+                        <td><input type="radio" name="four" value="4" required>4</td>
+                        <td><input type="radio" name="four" value="5" required>5</td>
+                    </tr>
+                    <tr>
+                        <td>Saturday</td>
+                        <td><input type="radio" name="three" value="1" required>1</td>
+                        <td><input type="radio" name="three" value="2" required>2</td>
+                        <td><input type="radio" name="three" value="3" required>3</td>
+                        <td><input type="radio" name="three" value="4" required>4</td>
+                        <td><input type="radio" name="three" value="5" required>5</td>
+                    </tr>
+                    <tr>
+                        <td>Sunday</td>
+                        <td><input type="radio" name="two" value="1" required>1</td>
+                        <td><input type="radio" name="two" value="2" required>2</td>
+                        <td><input type="radio" name="two" value="3" required>3</td>
+                        <td><input type="radio" name="two" value="4" required>4</td>
+                        <td><input type="radio" name="two" value="5" required>5</td>
+                    </tr>
+                <table>
+                    
+                        <label>Select a Package :</label><br />
+                        <input type="radio" name="reason" value="500">One Time
+                        Assessment Only (INR 500)<br />
+                        <input type="radio" name="reason"  value="400">Weekly Sessions
+                        (INR 400/session)<br />
+                        <input type="radio" name="reason"  value="300">12 Weekly
+                        Sessions (INR 300/sessions)<br />
+                        <label>Others :</label>
+                        <input type="text"><br>Quote will be shared on phone call<br />
+                  
+                    </table>
+                    <table cellpadding="2" cellspacing="4">
+                        <tr>
+                            <td>Quote :</td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" name="rupee" maxlength="2" id="result"><br>INR</td>
+                            <td>.</td>
+                            <td><input type="text" name="rupee" maxlength="2" id="paise"> <br>Paise</td>
+                        </tr>
+                    </table>
+            
+                    <div>
+                        <button (click)="ngSubmit">save</button>
+                    </div>
+                
+    
+
+

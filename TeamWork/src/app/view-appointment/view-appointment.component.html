@@ -1,0 +1,24 @@
+<h2>Appointment List</h2>
+
+<a routerLink="addEmp">New Employee</a>
+<p *ngIf="!apps && !errMsg">Please wait its loading....</p>
+<p *ngIf="errMsg">{{errMsg}}</p>
+
+<table border="2" cellspacing=10 *ngIf="apps">
+    <thead>
+        <tr>
+        <th>Name</th>
+        <th>Mobile</th>
+        <th>Email</th>
+        <th>Address</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let e of apps">
+            <td>{{e.firstName}} {{e.lastName}}</td>
+            <td>{{e.mobileNumber}}</td>
+            <td>{{e.email}}</td>
+            <td>{{e.address}}</td>
+        </tr>
+    </tbody>
+</table>
